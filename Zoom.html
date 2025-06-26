@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct to Zoom</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f0f2f5; margin: 0; }
+        .container { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); text-align: center; width: 90%; max-width: 400px; }
+        h1 { margin-top: 0; color: #0e71eb; }
+        input { width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { width: 100%; padding: 0.8rem; border: none; border-radius: 4px; background-color: #0e71eb; color: white; font-size: 1rem; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #0d65d1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Direct to Zoom Meeting</h1>
+        <input type="text" id="meetingId" placeholder="Enter Meeting ID" required>
+        <input type="password" id="password" placeholder="Enter Password">
+        <button onclick="joinMeeting()">Join Meeting</button>
+    </div>
+
+    <script>
+        function joinMeeting() {
+            const meetingId = document.getElementById('meetingId').value.trim().replace(/\s/g, '');
+            const password = document.getElementById('password').value.trim();
+
+            if (meetingId) {
+                let zoomUrl = `https://zoom.us/wc/join/${meetingId}`;
+
+                if (password) {
+                    zoomUrl += `?pwd=${password}`;
+                }
+
+                // Redirect the browser to the constructed Zoom URL
+                window.location.href = zoomUrl;
+            } else {
+                alert('Please enter a valid Meeting ID.');
+            }
+        }
+    </script>
+</body>
+</html>
